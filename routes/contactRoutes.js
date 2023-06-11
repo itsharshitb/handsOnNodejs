@@ -7,6 +7,7 @@ const {
   createContact,
   deleteContact,
 } = require("../controllers/contactControllers");
+const validateToken = require("../middleware/validateTokenHandler");
 
 //first method === below
 // router.route("/").get(getContacts);
@@ -17,6 +18,7 @@ const {
 
 //another method... line optimise
 
+router.use(validateToken);
 router.route("/").get(getContacts).post(createContact);
 router.route("/:id").get(getContact).put(updateContact).delete(deleteContact);
 
